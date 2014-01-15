@@ -1,0 +1,171 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.mc.sandbox</groupId>
+	<artifactId>jee7_sandbox</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>JEE7 sandbox</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<!-- Properties to fix: "[WARNING] Using platform encoding (MacRoman actually) 
+			to copy filtered resources, i.e. build is platform dependent!" -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- dependencies versions -->
+		<javaee-api.version>7.0</javaee-api.version>
+		<primefaces.version>4.0</primefaces.version>
+		<junit.version>4.11</junit.version>
+		<eclipselink.version>2.5.0</eclipselink.version>
+		<derby.version>10.9.1.0</derby.version>
+		<derbyclient.version>10.9.1.0</derbyclient.version>
+
+		<!-- plugins versions -->
+		<maven-compiler.version>3.1</maven-compiler.version>
+		<maven-war-plugin.version>2.3</maven-war-plugin.version>
+		<maven-glassfish-plugin.version>2.1</maven-glassfish-plugin.version>
+
+		<!-- glassfish localhost settings -->
+		<glassfish.httpPort>8080</glassfish.httpPort>
+		<glassfish.adminPort>4848</glassfish.adminPort>
+
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
+	<dependencies>
+
+		<!-- EE & frameworks dependencies -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>${javaee-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>${primefaces.version}</version>
+		</dependency>
+
+		<!-- Database dependencies .......................................... -->
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.jpa</artifactId>
+			<version>${eclipselink.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId> derbyclient </artifactId>
+			<version>${derbyclient.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId> derby </artifactId>
+			<version>${derby.version}</version>
+			<scope> test </scope>
+		</dependency>
+
+		<!-- end database dependencies.................................... -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>javax.json</groupId> -->
+		<!-- <artifactId>javax.json-api</artifactId> -->
+		<!-- <version>1.0</version> -->
+		<!-- <scope>provided</scope> -->
+		<!-- </dependency> -->
+
+
+		<!-- Testing dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>jee7_sandbox</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler.version}</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven-war-plugin.version}</version>
+				<configuration>
+					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+					<failOnMissingWebXml>true</failOnMissingWebXml>
+					<ignoreWebxml>false</ignoreWebxml>
+
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId> exec-maven-plugin </artifactId>
+				<version>1.2.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>org.agoncal.book.javaee7.chapter04.Main</mainClass>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.glassfish.maven.plugin</groupId>
+				<artifactId>maven-glassfish-plugin</artifactId>
+				<version>${maven-glassfish-plugin.version}</version>
+				<configuration>
+					<glassfishDirectory>${local.glassfish.home}</glassfishDirectory>
+					<user>admin</user>
+					<passwordFile>${local.glassfish.passfile}</passwordFile>
+					<domain>
+						<name>domain1</name>
+						<httpPort>${glassfish.httpPort}</httpPort>
+						<adminPort>${glassfish.adminPort}</adminPort>
+					</domain>
+					<components>
+						<component>
+							<name>${project.artifactId}</name>
+							<artifact>target/${project.build.finalName}.war</artifact>
+						</component>
+					</components>
+					<debug>true</debug>
+					<terse>false</terse>
+					<echo>true</echo>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+
+
+</project>

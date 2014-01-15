@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/PrimeTemplate.xhtml">
+	<ui:define name="content">
+		<h3>All Employees</h3>
+		<p:dataTable var="emp" value="#{loginBean.employees}" scrollRows="20"
+			scrollHeight="511" scrollable="true" liveScroll="true"
+			id="dataTable4">
+
+			<p:column headerText="Id" width="5%">
+				<h:outputText value="#{emp.employeeId}" />
+			</p:column>
+			<p:column headerText="E-mail" width="10%">
+				<h:outputText value="#{emp.email}" />
+			</p:column>
+			<p:column headerText="Name">
+				<h:outputText value="#{emp.firstName}" />
+			</p:column>
+
+			<p:column headerText="Surname">
+				<h:outputText value="#{emp.lastName}" />
+			</p:column>
+
+			<p:column headerText="Phone">
+				<h:outputText value="#{emp.phoneNumber}" />
+			</p:column>
+
+			<p:column headerText="Hire Date">
+				<h:outputText value="#{emp.hireDate}" />
+			</p:column>
+
+			<p:column headerText="Salary">
+				<h:outputText value="#{emp.salary}" />
+			</p:column>
+
+		</p:dataTable>
+	</ui:define>
+</ui:composition>
+</html>
