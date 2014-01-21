@@ -22,7 +22,10 @@
 		<derbyclient.version>10.9.1.0</derbyclient.version>
 
 		<logback.version>1.0.13</logback.version>
-		<slf4j.version>1.7.5</slf4j.version>
+		<!-- <slf4j.version>1.7.5</slf4j.version> -->
+
+		<slf4j.version>1.5.10</slf4j.version>
+
 		<commons-io.version>2.4</commons-io.version>
 		<commons-lang.version>2.6</commons-lang.version>
 		<commons-fileupload.version>1.3</commons-fileupload.version>
@@ -39,6 +42,9 @@
 		<guava.version>13.0.1</guava.version>
 
 		<glassfish-embedded-all.version>4.0</glassfish-embedded-all.version>
+
+		<arquillian-bom.version>1.1.2.Final</arquillian-bom.version>
+		<weld-core-bom.version>2.1.1.Final</weld-core-bom.version>
 
 		<arquillian-glassfish-embedded.version>1.0.0.CR4</arquillian-glassfish-embedded.version>
 		<arquillian-rest-client-api.version>1.0.0.Alpha1</arquillian-rest-client-api.version>
@@ -68,14 +74,26 @@
 
 	<dependencyManagement>
 		<dependencies>
+
 			<!-- Arquillian Bill Of Material -->
 			<dependency>
 				<groupId>org.jboss.arquillian</groupId>
 				<artifactId>arquillian-bom</artifactId>
-				<version>1.1.2.Final</version>
+				<version>${arquillian-bom.version}</version>
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.weld</groupId>
+				<artifactId>weld-core-bom</artifactId>
+				<version>${weld-core-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -93,6 +111,15 @@
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>${primefaces.version}</version>
+		</dependency>
+
+		<!-- EclipseLink's Object-XML binding and JAXB implementation. This also 
+			includes JSON binding support. -->
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.moxy</artifactId>
+			<version>${eclipselink.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- Database dependencies .......................................... -->
@@ -182,21 +209,7 @@
 			<scope>test</scope>
 			<type>jar</type>
 		</dependency>
-		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
-			<artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-			<version>${arquillian-glassfish-embedded.version}</version>
-			<scope>test</scope>
-		</dependency>
 
-		<!-- Keep this al last dependency for slf4j to use our own config instead 
-			of the Glassfish config -->
-		<dependency>
-			<groupId>org.glassfish.main.extras</groupId>
-			<artifactId>glassfish-embedded-all</artifactId>
-			<version>${glassfish-embedded-all.version}</version>
-			<scope>provided</scope>
-		</dependency>
 
 		<!-- Arquillian REST -->
 		<!-- Integrates a REST client API (using RestEasy Client Proxies) to facilitate 
@@ -251,7 +264,7 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
+				<!-- <groupId>org.apache.maven.plugins</groupId> -->
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven-surefire-plugin.version}</version>
 				<configuration>
@@ -295,16 +308,55 @@
 
 	</build>
 
-	<distributionManagement>
-		<repository>
-			<id>releases</id>
-			<url>http://nexus.aws.medicalcolumbus.de/content/repositories/releases</url>
-		</repository>
 
-		<snapshotRepository>
-			<id>snapshots</id>
-			<url>http://nexus.aws.medicalcolumbus.de/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
+	<profiles>
+
+		<profile>
+			<id>glassfish-embedded</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+
+				<dependency>
+					<groupId>org.jboss.arquillian.container</groupId>
+					<artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+					<version>${arquillian-glassfish-embedded.version}</version>
+					<scope>test</scope>
+				</dependency>
+
+				<!-- Keep this al last dependency for slf4j to use our own config instead 
+					of the Glassfish config -->
+				<dependency>
+					<groupId>org.glassfish.main.extras</groupId>
+					<artifactId>glassfish-embedded-all</artifactId>
+					<version>${glassfish-embedded-all.version}</version>
+					<scope>provided</scope>
+				</dependency>
+
+				<dependency>
+					<groupId>org.glassfish.jersey.core</groupId>
+					<artifactId>jersey-client</artifactId>
+					<version>2.4.1</version>
+					<scope>provided</scope>
+				</dependency>
+
+				<dependency>
+					<groupId>org.glassfish.jersey.containers</groupId>
+					<artifactId>jersey-container-servlet</artifactId>
+					<version>2.4.1</version>
+					<scope>provided</scope>
+				</dependency>
+
+
+
+
+			</dependencies>
+
+
+		</profile>
+
+	</profiles>
+
 
 </project>

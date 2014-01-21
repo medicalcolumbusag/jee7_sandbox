@@ -1,12 +1,13 @@
 package de.medicalcolumbus.sandbox.web;
 
-import de.medicalcolumbus.sandbox.domain.dao.EmployeeDetailsDao;
-import de.medicalcolumbus.sandbox.domain.entity.EmployeeDetails;
+import java.util.List;
 
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import java.util.List;
+import javax.inject.Inject;
+
+import de.medicalcolumbus.sandbox.domain.dao.EmployeeDetailsDao;
+import de.medicalcolumbus.sandbox.domain.entity.EmployeeDetails;
 
 /**
  * Created by chromyd on 17/01/14.
@@ -14,7 +15,8 @@ import java.util.List;
 @ManagedBean
 @RequestScoped
 public class EmployeeDetailsBean {
-    @EJB
+
+    @Inject
     private EmployeeDetailsDao employeeDetailsDao;
 
     public List<EmployeeDetails> getAllUsEmployees() {

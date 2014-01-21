@@ -7,6 +7,8 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<jta-data-source>jdbc/__default</jta-data-source>
 		<class>com.tutorial.Employee</class>
+
+		
 	</persistence-unit>
 
 </persistence>

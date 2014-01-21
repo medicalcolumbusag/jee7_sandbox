@@ -6,7 +6,10 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.tutorials.qualifiers.EmployeeBeanQ;
+
 @Stateless
+@EmployeeBeanQ
 public class EmployeeMgrBean implements EmployeeMgr {
 
 

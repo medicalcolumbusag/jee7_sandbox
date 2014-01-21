@@ -7,6 +7,7 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean(name="helloWorldBean")
 @RequestScoped
 public class HelloWorldBean {
+
 	private String msg;
 
 	public String getMsg() {
@@ -18,7 +19,7 @@ public class HelloWorldBean {
 	@PostConstruct
 	private void init() {
 
-		msg = "Hello World!! JFS example.. ";
+		msg = "Hello World!! JFS example...";
 	}
 
 }
