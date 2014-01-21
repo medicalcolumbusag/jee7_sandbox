@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.tutorials.qualifiers.EmployeeBeanQ;
+import com.tutorial.qualifiers.EmployeeBeanQ;
 
 @Stateless
 @EmployeeBeanQ
