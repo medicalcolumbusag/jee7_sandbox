@@ -68,7 +68,7 @@
 
 	<dependencyManagement>
 		<dependencies>
-<!-- 		Arquillian Bill Of Material -->
+			<!-- Arquillian Bill Of Material -->
 			<dependency>
 				<groupId>org.jboss.arquillian</groupId>
 				<artifactId>arquillian-bom</artifactId>
@@ -251,6 +251,7 @@
 			</plugin>
 
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven-surefire-plugin.version}</version>
 				<configuration>
