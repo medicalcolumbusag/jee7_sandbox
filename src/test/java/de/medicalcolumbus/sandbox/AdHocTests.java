@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.UUID;
 
 /**
- * Created by chromyd on 21/01/14.
+ * Created chromyd on 21/01/14.
  */
 public class AdHocTests {
 	private static Logger log = LoggerFactory.getLogger(AdHocTests.class);

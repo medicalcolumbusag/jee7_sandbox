@@ -6,6 +6,7 @@ import de.medicalcolumbus.sandbox.domain.entity.Country;
 import de.medicalcolumbus.sandbox.domain.entity.EmployeeDetails;
 import de.medicalcolumbus.sandbox.web.model.CountryDataModel;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -30,11 +31,12 @@ public class CrossBean {
 	@Inject
 	private EmployeeDetailsDao employeeDetailsDao;
 	private CountryDataModel countryDataModel;
+	private static Logger log = LoggerFactory.getLogger(CrossBean.class);
 
 	@PostConstruct
 	public void initializeModel() {
 		countryDataModel = new CountryDataModel(countryDao.findAll());
-		System.out.println("Initialized the model!");
+		log.debug("Initialized the model!");
 	}
 
 	public List<Country> getCountries() {
@@ -57,7 +59,7 @@ public class CrossBean {
 	}
 
 	public List<EmployeeDetails> getEmployeesForSelectedCountry() {
-		System.out.println("Getting employees for " + selectedCountry);
+		log.debug("Getting employees for " + selectedCountry);
 		if (selectedCountry == null) {
 			return Collections.EMPTY_LIST;
 		} else {
