@@ -152,7 +152,6 @@
 		<!-- end database dependencies.................................... -->
 
 		<!-- Logging dependencies -->
-		<!--
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
@@ -172,12 +171,6 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>log4j-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
-		</dependency>
--->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.5</version>
 		</dependency>
 
 		<!-- Test dependencies -->

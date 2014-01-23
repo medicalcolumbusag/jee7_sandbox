@@ -32,4 +32,12 @@ public class Country {
 	public void setCountryId(String countryId) {
 		this.countryId = countryId;
 	}
+
+	@Override
+	public String toString() {
+		return "Country{" +
+				"countryId='" + countryId + '\'' +
+				", countryName='" + countryName + '\'' +
+				'}';
+	}
 }
