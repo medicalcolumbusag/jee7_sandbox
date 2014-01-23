@@ -14,6 +14,6 @@ public class AdHocTests {
 
 	@Test
     public void generateUuid() {
-        log.info("My UUID: {}", UUID.randomUUID());
+        log.debug("My UUID: {}", UUID.randomUUID());
     }
 }
