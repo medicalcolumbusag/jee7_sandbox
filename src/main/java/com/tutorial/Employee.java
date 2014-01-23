@@ -17,10 +17,14 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "Employee.findAll", query = "select o from Employee o"),
-		@NamedQuery(name = "Employee.findByEmail", query = "select o from Employee o where o.email = :email") })
+		@NamedQuery(name = Employee.FIND_ALL, query = "select o from Employee o"),
+		@NamedQuery(name = Employee.FIND_BY_EMAIL, query = "select o from Employee o where o.email = :email") })
 @Table(name = "EMPLOYEES")
 public class Employee {
+
+	public final static String FIND_ALL = "Employee.findAll";
+	public final static String FIND_BY_EMAIL = "Employee.findByEmail";
+
 	@Column(name = "COMMISSION_PCT")
 	private Double commissionPct;
 	@Column(name = "DEPARTMENT_ID")

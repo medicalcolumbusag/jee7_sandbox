@@ -18,15 +18,17 @@ public class EmployeeMgrBean implements EmployeeMgr {
 
 	@Override
 	public List<Employee> findAll() {
-		return em.createNamedQuery("Employee.findAll", Employee.class)
+		return em.createNamedQuery(Employee.FIND_ALL, Employee.class)
 				.getResultList();
+
 
 	}
 
 	@Override
 	public Employee findByEmail(String email) {
-		return em.createNamedQuery("Employee.findByEmail", Employee.class)
+		return em.createNamedQuery(Employee.FIND_BY_EMAIL, Employee.class)
 				.setParameter("email", email).getSingleResult();
+
 
 	}
 
