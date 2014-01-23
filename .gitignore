@@ -1,1 +1,8 @@
+# ignore mvan target
 target/
+
+#ignore eclipse config file
+.classpath
+.project
+.settings/
+.metadata/
