@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+<!--   		<file>c:/Users/liparulol/myLogFile.log</file> -->
+   <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+    </layout>
+    <encoder>
+      <pattern>%d %5p | %t | %-55logger{55} | %m %n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="de.medicalcolumbus">
+    <level value="INFO" />
+  </logger>
+
+  <root>
+    <level value="DEBUG" />
+    <appender-ref ref="CONSOLE" />
+  </root>
+</configuration>
+                     
