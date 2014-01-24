@@ -1,4 +1,4 @@
-package de.medicalcolumbus.sandbox.service;
+package de.demos;
 
 import javax.inject.Inject;
 
