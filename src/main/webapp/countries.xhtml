@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+	<p:dataTable var="country" value="#{crossBean.countryDataModel}" scrollHeight="350" scrollable="true"
+	             selection="#{crossBean.selectedCountry}" selectionMode="single"
+	             id="dtCountry">
+
+		<p:ajax event="rowSelect" update=":form:dtEmpDet"/>
+
+		<p:column headerText="Id" width="10%">
+			<h:outputText value="#{country.countryId}"/>
+		</p:column>
+
+		<p:column headerText="Name">
+			<h:outputText value="#{country.countryName}"/>
+		</p:column>
+
+	</p:dataTable>
+
+</ui:composition>

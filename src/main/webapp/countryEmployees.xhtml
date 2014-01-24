@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+	<p:dataTable var="empd" value="#{crossBean.employeesForSelectedCountry}" scrollRows="20"
+	             scrollHeight="200" scrollable="true" liveScroll="true"
+	             id="dtEmpDet">
+
+		<p:column headerText="E-mail" width="10%">
+			<h:outputText value="#{empd.email}"/>
+		</p:column>
+		<p:column headerText="Name">
+			<h:outputText value="#{empd.firstName}"/>
+		</p:column>
+
+		<p:column headerText="Surname">
+			<h:outputText value="#{empd.lastName}"/>
+		</p:column>
+
+		<p:column headerText="Hire Date">
+			<h:outputText value="#{empd.hireDate}"/>
+		</p:column>
+
+		<p:column headerText="Department">
+			<h:outputText value="#{empd.departmentName}"/>
+		</p:column>
+
+		<p:column headerText="City">
+			<h:outputText value="#{empd.city}"/>
+		</p:column>
+
+		<p:column headerText="State">
+			<h:outputText value="#{empd.stateProvince}"/>
+		</p:column>
+
+		<p:column headerText="Country">
+			<h:outputText value="#{empd.countryId}"/>
+		</p:column>
+
+	</p:dataTable>
+</ui:composition>

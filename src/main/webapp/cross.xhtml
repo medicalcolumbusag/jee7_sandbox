@@ -10,59 +10,9 @@
 	<ui:define name="content">
 		<h:form id="form">
 			<h3>Cross Tables: Countries - Employees</h3>
-			<p:dataTable var="country" value="#{crossBean.countryDataModel}" scrollHeight="350" scrollable="true"
-			             selection="#{crossBean.selectedCountry}" selectionMode="single"
-			             id="dtCountry">
-
-				<p:ajax event="rowSelect" update=":form:dtEmpDet" />
-
-				<p:column headerText="Id" width="10%">
-					<h:outputText value="#{country.countryId}"/>
-				</p:column>
-
-				<p:column headerText="Name">
-					<h:outputText value="#{country.countryName}"/>
-				</p:column>
-
-			</p:dataTable>
-
+			<ui:include src="countries.xhtml"/>
 			<p/>
-			<p:dataTable var="empd" value="#{crossBean.employeesForSelectedCountry}" scrollRows="20"
-			             scrollHeight="400" scrollable="true" liveScroll="true"
-			             id="dtEmpDet">
-
-				<p:column headerText="E-mail" width="10%">
-					<h:outputText value="#{empd.email}"/>
-				</p:column>
-				<p:column headerText="Name">
-					<h:outputText value="#{empd.firstName}"/>
-				</p:column>
-
-				<p:column headerText="Surname">
-					<h:outputText value="#{empd.lastName}"/>
-				</p:column>
-
-				<p:column headerText="Hire Date">
-					<h:outputText value="#{empd.hireDate}"/>
-				</p:column>
-
-				<p:column headerText="Department">
-					<h:outputText value="#{empd.departmentName}"/>
-				</p:column>
-
-				<p:column headerText="City">
-					<h:outputText value="#{empd.city}"/>
-				</p:column>
-
-				<p:column headerText="State">
-					<h:outputText value="#{empd.stateProvince}"/>
-				</p:column>
-
-				<p:column headerText="Country">
-					<h:outputText value="#{empd.countryId}"/>
-				</p:column>
-
-			</p:dataTable>
+			<ui:include src="countryEmployees.xhtml"/>
 		</h:form>
 	</ui:define>
 </ui:composition>
