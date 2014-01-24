@@ -23,8 +23,7 @@ public class ResourcePropertiesTest {
 		try {
 
 			System.out.println(bundle.getString("test"));
-			log.debug("test property: " + bundle.getString("test"));
-			assertEquals(bundle.getString("test"), "This is a test property!");
+
 
 		}
 		catch (MissingResourceException e) {
@@ -32,9 +31,7 @@ public class ResourcePropertiesTest {
 			System.err.println(e);
 		}
 		finally {
-
 			assertEquals(bundle.getString("test"), "This is a test property!");
-
 		}
 
 	}
