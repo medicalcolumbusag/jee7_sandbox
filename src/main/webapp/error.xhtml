@@ -7,12 +7,15 @@
 
 <ui:composition template="/WEB-INF/templates/PrimeTemplate.xhtml">
 	<ui:define name="content">
-		<h2>Oops!</h2>
-		<h:outputLabel
-				value="This hasn't worked as expected!"/>
-
+		<ui:include src="javax.faces.error.xhtml"/>
+		<h2>Error</h2>
+		<h:outputLabel value="An unexpected error has occurred!"/>
 		<p/>
-		<h:button value="Back to Cross" outcome="cross"/>
+		<h:outputLabel value="Please use the below token when contacting support:"/>
+		<p/>
+		<h:outputLabel style="color:crimson" value="#{errorBean.logToken}"/>
+		<p/>
+		<h:button value="Back to Login" outcome="login"/>
 	</ui:define>
 </ui:composition>
 </html>
