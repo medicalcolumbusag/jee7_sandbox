@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/WEB-INF/templates/PrimeTemplate.xhtml">
+	<ui:define name="content">
+		<h2>Session Timed Out</h2>
+		<h:outputLabel value="Your session has ended due to a period of inactivity longer than "/>
+		<h:outputLabel value="#{session.maxInactiveInterval/60}">
+			<f:convertNumber pattern="#"/>
+		</h:outputLabel>
+		<h:outputLabel value=" minute(s)."/>
+
+		<p/>
+		<h:button value="Reload Application" outcome="cross"/>
+	</ui:define></ui:composition>
+</html>
