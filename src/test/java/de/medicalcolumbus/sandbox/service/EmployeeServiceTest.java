@@ -28,12 +28,9 @@ public class EmployeeServiceTest {
 	@Inject @EmployeeBeanQ
 	EmployeeMgr employeeService;
 
-
-
 	@Deployment
 	public static WebArchive createDeployment() {
 		return ShrinkWrap.create(WebArchive.class, "employee.war")
-//				.addClasses(AddressService.class, Address.class)
 				.addPackage( "com.tutorial")
 				.addAsResource("test-persistence.xml", "META-INF/persistence.xml")
 				.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");

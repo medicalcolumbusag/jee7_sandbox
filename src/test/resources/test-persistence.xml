@@ -4,7 +4,7 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
 
-	<persistence-unit name="Employee" transaction-type="JTA">
+	<persistence-unit name="TestDB" transaction-type="JTA">
 
 		<jta-data-source>jdbc/arquillian</jta-data-source>
 
@@ -16,4 +16,6 @@
 		</properties>
 
 	</persistence-unit>
+	
+	
 </persistence>

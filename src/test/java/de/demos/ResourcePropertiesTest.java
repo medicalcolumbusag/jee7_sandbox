@@ -5,15 +5,9 @@ import static org.junit.Assert.assertEquals;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import javax.inject.Inject;
-
-import org.jboss.logging.Logger;
 import org.junit.Test;
 
 public class ResourcePropertiesTest {
-
-	@Inject
-	Logger log;
 
 	@Test
 	public void testResourceProperty() {
@@ -22,9 +16,7 @@ public class ResourcePropertiesTest {
 
 		try {
 
-			System.out.println(bundle.getString("test"));
-
-
+		System.out.println(bundle.getString("test"));
 		}
 		catch (MissingResourceException e) {
 

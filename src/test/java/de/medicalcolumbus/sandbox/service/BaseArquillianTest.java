@@ -1,6 +1,8 @@
 package de.medicalcolumbus.sandbox.service;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -19,14 +21,22 @@ public abstract class BaseArquillianTest {
 	@Inject
 	protected UserTransaction utx;
 
+	@PersistenceContext
+	protected EntityManager em;
+
 	@Deployment
 	public static WebArchive createDeployment() {
+
 		final WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "test.war")
-				.addPackages(true, "com.tuorial")
+				.addPackages(true, "com.tutorial")
+				.addPackages(true,"de.medicalcolumbus.sandbox.domain")
+				.addPackages(true, "de.medicalcolumbus.sandbox.domain.dao")
 				.addAsWebInfResource("META-INF/beans.xml", "beans.xml")
+//				.addAsWebInfResource("glassfish-resources.xml", "glassfish-resources.xml")
 				.addAsResource("test-persistence.xml", "META-INF/persistence.xml");
 
 		return webArchive;
 	}
+
 
 }

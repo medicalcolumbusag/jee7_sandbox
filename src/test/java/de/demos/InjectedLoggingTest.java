@@ -11,25 +11,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 
-
 @RunWith(Arquillian.class)
 public class InjectedLoggingTest {
 
-    @Inject
-  Logger log;
+	@Inject
+	Logger log;
 
+	@Deployment
+	public static JavaArchive createDeployment() {
+		return ShrinkWrap.create(JavaArchive.class).addPackage("de.demo.logging").addAsManifestResource(EmptyAsset.INSTANCE,
+																										"beans.xml");
+	}
 
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-        		.addPackage( "de.demo.logging")
-            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-    }
+	@Test
+	public void should_inject_logging() {
 
-    @Test
-    public void should_inject_logging() {
-
-    	  log.debug("INJECTED LOGGER WORKS!!!");
-    }
+		log.debug("INJECTED LOGGER WORKS!!!");
+	}
 
 }
