@@ -24,11 +24,11 @@ public class ErrorBean {
 	Logger log;
 
 	public String getLogToken() {
-		String token= UUID.randomUUID().toString();
+		String token= UUID.randomUUID().toString().substring(0,8).toUpperCase();
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String, Object> req = fc.getExternalContext().getRequestMap();
 		Throwable ex = (Throwable) req.get("javax.servlet.error.exception");
-		log.error("token " + token, ex);
+		log.error(token, ex);
 		return token;
 	}
 }
