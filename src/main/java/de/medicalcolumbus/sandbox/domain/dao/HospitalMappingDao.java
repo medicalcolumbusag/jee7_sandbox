@@ -1,15 +1,14 @@
 package de.medicalcolumbus.sandbox.domain.dao;
 
-import java.util.List;
-
 import de.medicalcolumbus.sandbox.domain.HospitalMapping;
+import de.medicalcolumbus.sandbox.domain.HospitalMappingId;
 
 public interface HospitalMappingDao {
 
-	List<HospitalMapping> findByCustomerId(String customerId);
+	HospitalMapping findByPrimaryKey(HospitalMappingId hospitalMappingId);
 
-	HospitalMapping findByPrimaryKey(	String customerId,
-										String customerMaterialId,
-										String salesUnit,
-										String vendorId);
+	void createHospitalMapping(HospitalMapping hospitalMapping);
+
+	void removeHospitalMapping(HospitalMappingId hospitalMappingId);
+
 }

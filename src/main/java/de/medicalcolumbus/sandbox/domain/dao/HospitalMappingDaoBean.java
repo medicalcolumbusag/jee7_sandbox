@@ -1,39 +1,38 @@
 package de.medicalcolumbus.sandbox.domain.dao;
 
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import de.medicalcolumbus.sandbox.domain.HospitalMapping;
 import de.medicalcolumbus.sandbox.domain.HospitalMappingId;
 
 @Stateless
-public class HospitalMappingDaoBean implements HospitalMappingDao {
+public class HospitalMappingDaoBean implements HospitalMappingDao{
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
-	public List<HospitalMapping> findByCustomerId(String customerId) {
-		return em.createNamedQuery(	HospitalMapping.FIND_BY_CUSTOMER_ID,
-									HospitalMapping.class).setParameter("customerId",
-																		customerId).getResultList();
-	}
-
-	@Override
-	public HospitalMapping findByPrimaryKey(String customerId,
-											String customerMaterialId,
-											String salesUnit,
-											String vendorId) {
-
-		HospitalMappingId hospitalMappingId = new HospitalMappingId(customerId,
-																	customerMaterialId,
-																	salesUnit,
-																	vendorId);
+	public HospitalMapping findByPrimaryKey(HospitalMappingId hospitalMappingId) {
 
 		return em.find(HospitalMapping.class, hospitalMappingId);
 
 	}
+
+	@Override @Transactional
+	public void createHospitalMapping(HospitalMapping hospitalMapping) {
+
+		em.persist(hospitalMapping);
+
+	}
+
+	@Override @Transactional
+	public void removeHospitalMapping(HospitalMappingId hospitalMappingId) {
+
+		em.remove(em.find(HospitalMapping.class, hospitalMappingId));
+
+	}
+
 }

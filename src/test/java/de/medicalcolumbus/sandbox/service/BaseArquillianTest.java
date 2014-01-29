@@ -8,6 +8,7 @@ import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.runner.RunWith;
 
@@ -28,11 +29,11 @@ public abstract class BaseArquillianTest {
 	public static WebArchive createDeployment() {
 
 		final WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "test.war")
-				.addPackages(true, "com.tutorial")
+				.addPackage("de.demo.logging")
 				.addPackages(true,"de.medicalcolumbus.sandbox.domain")
 				.addPackages(true, "de.medicalcolumbus.sandbox.domain.dao")
-				.addAsWebInfResource("META-INF/beans.xml", "beans.xml")
-//				.addAsWebInfResource("glassfish-resources.xml", "glassfish-resources.xml")
+					.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+				.addAsWebInfResource("glassfish-resources.xml", "glassfish-resources.xml")
 				.addAsResource("test-persistence.xml", "META-INF/persistence.xml");
 
 		return webArchive;

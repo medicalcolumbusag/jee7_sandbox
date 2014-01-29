@@ -23,7 +23,6 @@ public class HospitalMappingId implements Serializable{
 	private String vendorId;
 
 
-
 	public HospitalMappingId() {
 		super();
 	}
@@ -42,7 +41,6 @@ public class HospitalMappingId implements Serializable{
 	public String getCustomerId() {
 		return customerId;
 	}
-
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
@@ -60,12 +58,14 @@ public class HospitalMappingId implements Serializable{
 	public void setSalesUnit(String salesUnit) {
 		this.salesUnit = salesUnit;
 	}
+
 	public String getVendorId() {
 		return vendorId;
 	}
 	public void setVendorId(String vendorId) {
 		this.vendorId = vendorId;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,6 +84,7 @@ public class HospitalMappingId implements Serializable{
 					+ ((vendorId == null) ? 0 : vendorId.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -123,8 +124,5 @@ public class HospitalMappingId implements Serializable{
 				return false;
 		return true;
 	}
-
-
-
 
 }
