@@ -2,6 +2,8 @@ package de.medicalcolumbus.sandbox.web.model;
 
 import de.medicalcolumbus.sandbox.domain.entity.Country;
 import org.primefaces.model.SelectableDataModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.faces.model.ListDataModel;
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.List;
  * @author chromyd
  */
 public class CountryDataModel extends ListDataModel<Country> implements SelectableDataModel<Country> {
+	private static Logger log = LoggerFactory.getLogger(CountryDataModel.class);
+
 	public CountryDataModel(List<Country> list) {
 		super(list);
 	}
@@ -29,7 +33,8 @@ public class CountryDataModel extends ListDataModel<Country> implements Selectab
 		return null;
 	}
 
-	public void deleteFirstCountry() {
-		((List<Country>) getWrappedData()).remove(0);
+	public void deleteCountry(Country country) {
+		log.debug("Trying to delete {}", country);
+		((List<Country>) getWrappedData()).remove(country);
 	}
 }

@@ -17,7 +17,8 @@
 		</p:column>
 
 	</p:dataTable>
-	<p:commandButton value="Delete Country" actionListener="#{crossBean.countryDataModel.deleteFirstCountry}"
+	<p:commandButton value="Delete Country"
+	                 actionListener="#{crossBean.countryDataModel.deleteCountry(crossBean.selectedCountry)}"
 	                 update=":form:dtCountry"/>
 
 </ui:composition>
