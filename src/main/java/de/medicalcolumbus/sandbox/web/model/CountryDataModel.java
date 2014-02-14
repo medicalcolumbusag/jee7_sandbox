@@ -28,4 +28,8 @@ public class CountryDataModel extends ListDataModel<Country> implements Selectab
 		}
 		return null;
 	}
+
+	public void deleteFirstCountry() {
+		((List<Country>) getWrappedData()).remove(0);
+	}
 }

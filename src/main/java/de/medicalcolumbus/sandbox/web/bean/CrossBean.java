@@ -10,10 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,6 +41,7 @@ public class CrossBean {
 		return countryDao.findAll();
 	}
 	public CountryDataModel getCountryDataModel() {
+		log.debug("fetching the model");
 		return countryDataModel;
 	}
 
